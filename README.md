@@ -1,16 +1,12 @@
 # lib_calendar_table
 
-A lib concept apresentation
+A Flutter pub_dev package concept demonstration
 
-## Getting Started
+## Idealizing the demo
 
-This project is a starting point for a Flutter application.
+This project shows a usage of the table_calendar lib.
+https://pub.dev/packages/table_calendar
 
-A few resources to get you started if this is your first Flutter project:
+With a simple application concept to show all the possibilities of usages of this cool package.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<img width="515" alt="Captura de Tela 2021-03-29 às 9 29 26 PM" src="https://user-images.githubusercontent.com/26191876/112915906-dd4a4d00-90d5-11eb-85ed-d064e2ae3f69.png">
