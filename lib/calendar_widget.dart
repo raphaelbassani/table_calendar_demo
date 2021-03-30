@@ -162,6 +162,7 @@ class _CalendarWidgetState extends State<CalendarWidget>
       onDaySelected: _onDaySelected,
       onVisibleDaysChanged: _onVisibleDaysChanged,
       onHeaderTapped: _onHeaderTapped,
+      onDayLongPressed: _onDayLongPress,
       onHeaderLongPressed: _onHeaderLongTapped,
       onCalendarCreated: _onCalendarCreated,
     );
@@ -169,9 +170,13 @@ class _CalendarWidgetState extends State<CalendarWidget>
 
   Widget _buildTableCalendarCustom() {
     return TableCalendar(
+      //Começo do calendario
       startDay: DateTime(2021, 1, 1),
+      //Fim do calendario
       endDay: DateTime(2021, 12, 31),
+      //Lingua do Calendario
       locale: "pt_BR",
+      //Estilo do calendario
       calendarStyle: CalendarStyle(
         //Decoração do calendario
         /*contentDecoration: BoxDecoration(
@@ -235,21 +240,31 @@ class _CalendarWidgetState extends State<CalendarWidget>
         //Selecionado
         highlightSelected: true,
       ),
+      //Feriados
       holidays: _holidays,
+      //Quando selecionar um dia
       onDaySelected: _onDaySelectedCustom,
+      //Clique longo no dia
       onDayLongPressed: _onDayLongPress,
+      //Controlador do Calendario
       calendarController: _calendarController,
+      //Eventos
       events: _events,
+      //Estilo do header
       headerStyle: HeaderStyle(
+        //Lado esquerdo do header
         leftChevronIcon:
             Icon(Icons.arrow_back_ios, size: 15, color: Colors.black),
+        //lado direito do header
         rightChevronIcon:
             Icon(Icons.arrow_forward_ios, size: 15, color: Colors.black),
+        //Estilo do titulo do calendario
         titleTextStyle: TextStyle(
           fontWeight: FontWeight.w600,
           fontSize: 18,
           color: Colors.black,
         ),
+        //Mudar o formato do calendario
         formatButtonVisible: false,
       ),
     );
@@ -270,7 +285,9 @@ class _CalendarWidgetState extends State<CalendarWidget>
         CalendarFormat.week: '',
       },
       calendarStyle: CalendarStyle(
-        outsideDaysVisible: false,
+        outsideDaysVisible: true,
+        outsideWeekendStyle: TextStyle().copyWith(color: Colors.blue[800].withOpacity(.3)),
+        outsideStyle: TextStyle().copyWith(color: Colors.black.withOpacity(.2)),
         weekendStyle: TextStyle().copyWith(color: Colors.blue[800]),
         holidayStyle: TextStyle().copyWith(color: Colors.blue[800]),
       ),
@@ -297,6 +314,60 @@ class _CalendarWidgetState extends State<CalendarWidget>
                 '${date.day}',
                 style: TextStyle().copyWith(
                     fontSize: _calendarController.isSelected(date) ? 20 : 16),
+              ),
+            ),
+          );
+        },
+        outsideHolidayDayBuilder: (context, date, _) {
+          return Container(
+            margin: const EdgeInsets.all(4.0),
+            padding: const EdgeInsets.only(top: 5.0, left: 6.0),
+            width: 100,
+            height: 100,
+            decoration: BoxDecoration(
+                color: Colors.blue[100].withOpacity(.2),
+                borderRadius: BorderRadius.all(Radius.circular(10))),
+            child: Text(
+              '${date.day}',
+              style: TextStyle().copyWith(
+                  fontSize: _calendarController.isSelected(date) ? 21 : 16),
+            ),
+          );
+        },
+        dowWeekdayBuilder: (context, weekday) {
+          return Padding(
+            padding: const EdgeInsets.only(left: 4),
+            child: Container(
+              height: 30,
+              decoration: BoxDecoration(
+                color: Colors.blue[300],
+                borderRadius: BorderRadius.circular(10)
+              ),
+              child: Center(
+                child: Text(weekday, style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 14,
+                  color: Colors.black,
+                ),),
+              ),
+            ),
+          );
+        },
+        dowWeekendBuilder: (context, weekday) {
+          return Padding(
+            padding: const EdgeInsets.only(left: 4),
+            child: Container(
+              height: 30,
+              decoration: BoxDecoration(
+                  color: Colors.blue[100],
+                  borderRadius: BorderRadius.circular(10)
+              ),
+              child: Center(
+                child: Text(weekday, style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 14,
+                  color: Colors.blue[800],
+                ),),
               ),
             ),
           );
