@@ -112,7 +112,6 @@ class _CalendarWidgetState extends State<CalendarWidget>
 
   @override
   Widget build(BuildContext context) {
-    calendarShown option = calendarShown.simples;
     return Scaffold(
       body: Column(
         mainAxisSize: MainAxisSize.max,
