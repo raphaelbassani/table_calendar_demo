@@ -65,7 +65,12 @@ class _CalendarWidgetState extends State<CalendarWidget>
   }
 
   void _onDaySelected(DateTime day, List events, List holidays) {
-    print('Dia Selecionado $day');
+    String date = day.day.toString() +
+        "/" +
+        day.month.toString() +
+        "/" +
+        day.year.toString();
+    print('Dia Selecionado $date');
     setState(() {
       _selectedEvents = events;
     });
@@ -89,12 +94,26 @@ class _CalendarWidgetState extends State<CalendarWidget>
         dateTime.month.toString() +
         "/" +
         dateTime.year.toString();
-    print('Clique Longo $date');
+    final snackBar = SnackBar(
+      content: Text('Clique Longo $date'),
+      action: SnackBarAction(
+        label: '',
+        onPressed: () {},
+      ),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   void _onVisibleDaysChanged(
       DateTime first, DateTime last, CalendarFormat format) {
-    print('Trocar os dias visiveis');
+    final snackBar = SnackBar(
+      content: Text('Trocar os dias visiveis'),
+      action: SnackBarAction(
+        label: '',
+        onPressed: () {},
+      ),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   void _onCalendarCreated(
@@ -103,11 +122,25 @@ class _CalendarWidgetState extends State<CalendarWidget>
   }
 
   void _onHeaderTapped(DateTime first) {
-    print('Click no Header');
+    final snackBar = SnackBar(
+      content: Text('Click no Header'),
+      action: SnackBarAction(
+        label: '',
+        onPressed: () {},
+      ),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   void _onHeaderLongTapped(DateTime first) {
-    print('Click longo no Header');
+    final snackBar = SnackBar(
+      content: Text('Click longo no Header'),
+      action: SnackBarAction(
+        label: '',
+        onPressed: () {},
+      ),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   @override
@@ -285,7 +318,8 @@ class _CalendarWidgetState extends State<CalendarWidget>
       },
       calendarStyle: CalendarStyle(
         outsideDaysVisible: true,
-        outsideWeekendStyle: TextStyle().copyWith(color: Colors.blue[800].withOpacity(.3)),
+        outsideWeekendStyle:
+            TextStyle().copyWith(color: Colors.blue[800].withOpacity(.3)),
         outsideStyle: TextStyle().copyWith(color: Colors.black.withOpacity(.2)),
         weekendStyle: TextStyle().copyWith(color: Colors.blue[800]),
         holidayStyle: TextStyle().copyWith(color: Colors.blue[800]),
@@ -339,15 +373,17 @@ class _CalendarWidgetState extends State<CalendarWidget>
             child: Container(
               height: 30,
               decoration: BoxDecoration(
-                color: Colors.blue[300],
-                borderRadius: BorderRadius.circular(10)
-              ),
+                  color: Colors.blue[300],
+                  borderRadius: BorderRadius.circular(10)),
               child: Center(
-                child: Text(weekday, style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 14,
-                  color: Colors.black,
-                ),),
+                child: Text(
+                  weekday,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 14,
+                    color: Colors.black,
+                  ),
+                ),
               ),
             ),
           );
@@ -359,14 +395,16 @@ class _CalendarWidgetState extends State<CalendarWidget>
               height: 30,
               decoration: BoxDecoration(
                   color: Colors.blue[100],
-                  borderRadius: BorderRadius.circular(10)
-              ),
+                  borderRadius: BorderRadius.circular(10)),
               child: Center(
-                child: Text(weekday, style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 14,
-                  color: Colors.blue[800],
-                ),),
+                child: Text(
+                  weekday,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 14,
+                    color: Colors.blue[800],
+                  ),
+                ),
               ),
             ),
           );
